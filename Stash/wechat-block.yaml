@@ -1,0 +1,29 @@
+name: 微信相关
+desc: 微信屏蔽内链跳转&去广告
+
+http:
+  mitm:
+    - "mp.weixin.qq.com"
+    - "weixin110.qq.com"
+  script:
+    #微信朋友圈去广告
+    - name: "mp"
+      match: ^https?:\/\/weixin110\.qq\.com\/cgi-bin\/mmspamsupport-bin\/newredirectconfirmcgi
+      type: response
+      require-body: true
+      timeout: 10
+      max-size: -1
+    #微信内链跳转
+    - name: "fuckweixin110"
+      match: ^https?:\/\/mp\.weixin\.qq\.com\/mp\/getappmsgad
+      require-body: true
+      timeout: 10
+      max-size: 0
+
+script-providers:
+  mp:
+    url: "https://raw.githubusercontent.com/NobyDa/Script/master/QuantumultX/File/Wechat.js"
+    interval: 86400
+  fuckweixin110:
+    url: "https://raw.githubusercontent.com/HotKids/Rules/master/Script/weixin110.js"
+    interval: 86400
