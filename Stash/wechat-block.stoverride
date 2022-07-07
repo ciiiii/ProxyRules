@@ -16,6 +16,7 @@ http:
     #微信内链跳转
     - name: "fuckweixin110"
       match: ^https?:\/\/mp\.weixin\.qq\.com\/mp\/getappmsgad
+      type: response
       require-body: true
       timeout: 10
       max-size: 0
